@@ -1,11 +1,5 @@
 <?php
-session_start();
-
-// Jika session tidak ada, dilempar balik ke login
-if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
-    header("Location: login.php");
-    exit();
-}
+include "koneksi.php"; // Pastikan nama filenya benar
 ?>
 
 
@@ -14,7 +8,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PharmaSleek - Your Trusted Pharmacy</title>
+    <title>MEDIVERSE</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -35,7 +29,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
     <nav class="navbar navbar-expand-lg" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-prescription-bottle-medical"></i> PharmaSleek
+                <i class="fas fa-prescription-bottle-medical"></i> MEDIVERSE
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -43,23 +37,23 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
             <div class="collapse navbar-collapse" id="navbarNav">
                      <ul class="navbar-nav ms-auto ml-auto"></ul>
                     <li class="nav-item text-center">
-                        <a class="nav-link active" aria-current="page" href="#about">About Us</a>
+                        <a class="nav-link active" aria-current="page" href="#about">Tentang Kami</a>
                     </li>
                     <li class="nav-item text-center">
-                        <a class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" href="#services">Layanan</a>
                     </li>
                     <li class="nav-item text-center">
-                        <a class="nav-link" href="#products">Products</a>
+                        <a class="nav-link" href="#products">Produk</a>
                     </li>
                     <li class="nav-item text-center">
-                        <a class="nav-link" href="#latest-medicines">New Arrivals</a> </li>
+                        <a class="nav-link" href="#latest-medicines">Pendatang Baru</a> </li>
                     <li class="nav-item text-center">
-                        <a class="nav-link" href="#offers">Offers</a> </li>
+                        <a class="nav-link" href="#offers">Penawaran</a> </li>
                     <li class="nav-item text-center">
                         <a class="nav-link" href="#blog">Blog</a>
                     </li>
                     <li class="nav-item text-center">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#contact">Kontak</a>
              </li>
         <li class="nav-item text-center">
             <a class="nav-link" href="login.php">Login</a>
@@ -74,10 +68,10 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
     <section id="hero" class="hero-section">
         <div class="container">
             <div class="hero-content">
-                <h1>Empowering Health, Inspiring Wellness</h1>
-                <p>Discover a new era of pharmacy care with PharmaSleek. <br>Your trusted source for medications, expert advice, and a healthier tomorrow.</p>
-                <a href="#services" class="btn btn-primary btn-lg btn-hero">Explore Services</a>
-                <a href="#latest-medicines" class="btn btn-outline-light btn-lg btn-hero">New Medicines</a>
+                <h1>MEDIVERSE Hadir Untuk Memeberikan Kemudahan Maksimal, Kepercayaan Total.</h1>
+                <p>Temukan era baru pelayanan farmasi dengan MEDIVERSE. <br>Sumber terpercaya Anda untuk obat-obatan, saran ahli, dan masa depan yang lebih sehat.</p>
+                <a href="#services" class="btn btn-primary btn-lg btn-hero">Jelajahi Layanan</a>
+                <a href="#latest-medicines" class="btn btn-outline-light btn-lg btn-hero">Obat Baru</a>
             </div>
         </div>
     </section>
@@ -90,21 +84,21 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
                 </div>
                 <div class="col-lg-6 about-us-content">
                     <div class="section-title text-start ps-lg-3">
-                        <h2 class="text-start">Welcome to PharmaSleek</h2>
+                        <h2 class="text-start">Selamat Datang Di MEDIVERSE</h2>
                     </div>
-                    <p class="ps-lg-3">PharmaSleek is more than just a pharmacy; we are your partners in health. Our mission is to provide accessible, high-quality pharmaceutical care, innovative health solutions, and compassionate support to every individual we serve.</p>
-                    <p class="ps-lg-3">We believe in a holistic approach to wellness, combining expert knowledge with a deep commitment to our community's health. Our values of integrity, patient-centricity, and excellence guide everything we do.</p>
+                    <p class="ps-lg-3">MEDIVERSE lebih dari sekadar apotek; kami adalah mitra Anda dalam kesehatan. Misi kami adalah menyediakan perawatan farmasi yang mudah diakses dan berkualitas tinggi, solusi kesehatan inovatif, dan dukungan penuh empati kepada setiap individu yang kami layani.</p>
+                    <p class="ps-lg-3">Apotek MEDIVERSE kami didirikan atas dasar kemitraan kesehatan sejati. Kami memadukan pengetahuan ahli di bidang farmasi dengan komitmen kuat untuk meningkatkan kualitas hidup komunitas. Didukung oleh nilai Integritas Tak Tertandingi, Fokus pada Kesejahteraan Pasien, dan Standar Keunggulan Pelayanan, kami siap menjadi tetangga yang peduli bagi kesehatan Anda.</p>
                     <ul class="list-unstyled mt-4 ps-lg-3">
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Personalized medication management</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Comprehensive range of health & wellness products</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Dedicated to fostering a healthier community</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Manajemen pengobatan yang dipersonalisasi</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Rangkaian lengkap produk kesehatan & kebugaran</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i> Berkomitmen untuk mewujudkan komunitas yang lebih sehat.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="section-padding bg-light">
+    <!-- <section id="services" class="section-padding bg-light">
         <div class="container">
             <div class="section-title">
                 <h2>Our Comprehensive Services</h2>
@@ -155,28 +149,61 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <section id="products" class="section-padding">
+  <section id="products" class="section-padding">
         <div class="container">
             <div class="section-title">
-                <h2>Featured Health Products</h2>
-                <p>Discover our curated selection of popular health and wellness essentials.</p>
+                <h2>Produk Kesehatan Unggulan (MEDIVERSE)</h2>
+                <p>Kami menghadirkan rangkaian produk farmasi dan kesehatan pilihan untuk mendukung gaya hidup sehat Anda, mulai dari pencegahan hingga pemulihan.</p>
             </div>
             <div class="swiper product-swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="product-card">
-                            <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/organic-vitamin-d3.webp" alt="Organic Vitamin D3">
-                            <div class="card-body">
-                                <h5 class="card-title">Organic Vitamin D3</h5>
-                                <p class="card-text text-muted">Essential for bone health and immune support.</p>
-                                <p class="price">$18.50</p>
-                                <a href="#" class="btn btn-outline-primary btn-sm w-100">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
+                                            <?php
+                        // Pastikan koneksi ($koneksi) sudah tersedia
+                        
+                        // 1. Query untuk mengambil data obat
+                        $queryObat = mysqli_query($koneksi, "SELECT * FROM tb_obat");
+                        
+                        // Cek apakah ada data yang ditemukan
+                        if (mysqli_num_rows($queryObat) > 0) {
+                            
+                            while ($rowObat = mysqli_fetch_array($queryObat)) {
+                                
+                                // Ambil NAMA FILE gambar (misalnya 'metformin.jpg', 'jahe.jpg') dari kolom 'gambar'
+                                $namaFileGambar = $rowObat['gambar']; 
+                                
+                                // ************ BARIS KOREKSI ************
+                                // Gabungkan BASE PATH ('upload/') dengan NAMA FILE DINAMIS ($namaFileGambar)
+                                // Contoh hasil: 'upload/jahe.jpg', 'upload/cetirizine.png'
+                                $urlGambarFinal = 'upload/' . $namaFileGambar; 
+                                
+                                // Ambil nama obat untuk judul dan alt text
+                                // Variabel $metformin diganti menjadi $namaObat agar lebih konsisten
+                                $namaObat = $rowObat['nm_obat']; 
+                                
+                                echo '<div class="swiper-slide">
+                                        <div class="product-card">
+                                            
+                                            <img src="'.$urlGambarFinal.'" alt="'.$namaObat.'"> 
+                                            
+                                            <div class="card-body">
+                                                
+                                                <h5 class="card-title">'.$namaObat.'</h5>
+                                                
+                                                <p class="card-text text-muted">"Produk Pilihan Apoteker Resmi. Kesehatan Optimal Kini Ada di Genggaman Anda"</p>
+                                                <p class="price">Rp '.$rowObat['harga'].'</p>
+                                                <a href="#" class="btn btn-outline-primary btn-sm w-100">Learn More</a>
+                                            </div>
+                                        </div>
+                                    </div>';
+                            }
+                        } else {
+                            // Pesan jika database kosong
+                            echo '<div class="col-12"><p class="text-center">Tidak ada data obat yang tersedia.</p></div>';
+                        }
+                    ?>
+                    <!-- <div class="swiper-slide">
                         <div class="product-card">
                             <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/advanced-probiotic-blend.webp" alt="Advanced Probiotic Blend">
                             <div class="card-body">
@@ -219,7 +246,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
                                 <a href="#" class="btn btn-outline-primary btn-sm w-100">Learn More</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next"></div>
@@ -229,54 +256,53 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
     </section>
 
     <section id="latest-medicines" class="section-padding bg-light">
-        <div class="container">
-            <div class="section-title">
-                <h2>New Arrivals & Innovations</h2>
-                <p>Stay ahead with the latest advancements in pharmaceutical care and wellness products.</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="medicine-card">
-                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/newgen-painrelief-x.webp" alt="NewGen PainRelief X">
-                        <div class="card-body">
-                            <h5 class="card-title">NewGen PainRelief X</h5>
-                            <p class="card-text text-muted">Advanced formula for rapid pain relief.</p>
-                            <p class="price">$29.99</p>
-                            <a href="#" class="btn btn-primary btn-sm w-100">Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="medicine-card">
-                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/immunoboost-pro.webp" alt="ImmunoBoost Pro">
-                        <div class="card-body">
-                            <h5 class="card-title">ImmunoBoost Pro</h5>
-                            <p class="card-text text-muted">Next-generation immune system support.</p>
-                            <p class="price">$34.50</p>
-                            <a href="#" class="btn btn-primary btn-sm w-100">Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="medicine-card">
-                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/cardiocare-plus.webp" alt="CardioCare Plus">
-                        <div class="card-body">
-                            <h5 class="card-title">CardioCare Plus</h5>
-                            <p class="card-text text-muted">Innovative support for heart health.</p>
-                            <p class="price">$45.00</p>
-                            <a href="#" class="btn btn-primary btn-sm w-100">Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="medicine-card">
-                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/neurosupport-max.webp" alt="NeuroSupport Max">
-                        <div class="card-body">
-                            <h5 class="card-title">NeuroSupport Max</h5>
-                            <p class="card-text text-muted">Cognitive function and brain health enhancer.</p>
-                            <p class="price">$52.75</p>
-                            <a href="#" class="btn btn-primary btn-sm w-100">Details</a>
-                        </div>
+    <div class="container">
+        <div class="section-title">
+            <h2>Produk Baru & Inovasi</h2>
+            <p>Tetap terdepan dengan kemajuan terbaru dalam perawatan farmasi dan produk kesehatan.</p>
+        </div>
+        <div class="row">
+            
+            <?php
+                // Asumsi: Variabel $koneksi sudah terkoneksi ke database.
+                
+                // ************ KOREKSI DI SINI ************
+                // 1. Query hanya mengambil 4 data (LIMIT 4). 
+                //    Gunakan ORDER BY id_obat DESC untuk memastikan data yang ditampilkan adalah yang terbaru.
+                $queryObat = mysqli_query($koneksi, "SELECT * FROM tb_obat ORDER BY id_obat DESC LIMIT 4");
+                
+                if (mysqli_num_rows($queryObat) > 0) {
+                    
+                    while ($rowObat = mysqli_fetch_array($queryObat)) {
+                        
+                        $namaFileGambar = $rowObat['gambar']; 
+                        $namaObat = $rowObat['nm_obat'];
+                        $hargaObat = $rowObat['harga'];
+                        
+                        // Gabungkan PATH DINAMIS (Misal: 'upload/Vitamin.png')
+                        $urlGambarFinal = 'upload/' . $namaFileGambar; 
+                        
+                        // 2. Output HTML dinamis untuk setiap kartu obat
+                        echo '<div class="col-md-6 col-lg-3 mb-4">
+                                <div class="medicine-card">
+                                    <img src="'.$urlGambarFinal.'" alt="'.$namaObat.'">
+                                    <div class="card-body">
+                                        <h5 class="card-title">'.$namaObat.'</h5>
+                                        <p class="card-text text-muted">Produk Asli dan Terjamin dari sumber farmasi resmi MEDIVERSE.</p> 
+                                        <p class="price">Rp '.$hargaObat.'</p>
+                                        <a href="#" class="btn btn-primary btn-sm w-100">Details</a>
+                                    </div>
+                                </div>
+                            </div>';
+                    }
+                } else {
+                    echo '<div class="col-12"><p class="text-center">Tidak ada data obat baru yang tersedia.</p></div>';
+                }
+            ?>
+
+        </div>
+    </div>
+</section>
                     </div>
                 </div>
             </div>
@@ -285,13 +311,13 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
 
     <section id="offers" class="discount-offer-section">
         <div class="container">
-            <h2>Limited Time Health Offers!</h2>
-            <p>Don't miss out on our exclusive discounts on selected health products and services. Your well-being, made more affordable.</p>
+            <h2>Penawaran Kesehatan Terbatas! </h2>
+            <p>"Jadikan Sehat Anda Prioritas. Klik Sekarang dan Temukan Diskon Kesejahteraan Terbaik!"</p>
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-8">
-                    <span class="display-4">Save up to 25%</span>
-                    <p class="lead">On all Vitamin & Supplement Brands this week!</p>
-                    <a href="#products" class="btn btn-light btn-lg">Shop Now & Save</a>
+                    <span class="display-4">Hemat hingga 25%</span>
+                    <p class="lead">Penawaran khusus untuk semua merek vitamin & suplemen minggu ini!</p>
+                    <a href="#products" class="btn btn-light btn-lg">Belanja Sekarang & Hemat</a>
                 </div>
             </div>
         </div>
@@ -300,29 +326,29 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
 
     <section id="why-choose-us" class="section-padding"> <div class="container">
             <div class="section-title">
-                <h2>Why Entrust Your Health to PharmaSleek?</h2>
-                <p>Discover the PharmaSleek difference – where care, expertise, and convenience meet.</p>
+                <h2>Mengapa Anda Harus Mempercayakan Kesehatan Anda kepada MEDIVERSE?</h2>
+                <p>Temukan perbedaan MEDIVERSE – tempat perhatian, keahlian, dan kenyamanan bertemu.</p>
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="feature-item">
                         <div class="icon"><i class="fas fa-hand-holding-medical"></i></div>
-                        <h5>Patient-First Approach</h5>
-                        <p>Your health and well-being are our top priorities. We provide personalized care and attention.</p>
+                        <h5>Pelayanan Berpusat pada Kebutuhan Anda.</h5>
+                        <p>Lebih personal dan langsung, berfokus pada apa yang dibutuhkan pasien</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="feature-item">
                         <div class="icon"><i class="fas fa-users-cog"></i></div>
-                        <h5>Qualified & Caring Staff</h5>
-                        <p>Our team of experienced pharmacists and healthcare professionals is dedicated to your service.</p>
+                        <h5>Staf yang Berkualifikasi & Peduli</h5>
+                        <p>Tim kami yang terdiri dari apoteker dan profesional kesehatan berpengalaman siap melayani Anda.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="feature-item">
                         <div class="icon"><i class="fas fa-shield-alt"></i></div> 
-                        <h5>Quality & Trust</h5>
-                        <p>We adhere to the highest standards of quality and ethics in all our products and services.</p>
+                        <h5>Kualitas & Kepercayaan</h5>
+                        <p>Kami mematuhi standar kualitas dan etika tertinggi dalam semua produk dan layanan kami.</p>
                     </div>
                 </div>
             </div>
@@ -332,41 +358,41 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
     <section id="testimonials" class="section-padding bg-light">
         <div class="container">
             <div class="section-title">
-                <h2>Voices of Our Valued Patients</h2>
-                <p>Hear directly from those who have experienced the dedicated care at PharmaSleek.</p>
+                <h2>Suara dari Pasien Kami yang Terhormat</h2>
+                <p>Dengarkan langsung dari mereka yang telah merasakan perawatan penuh perhatian di MEDIVERSE</p>
             </div>
             <div class="swiper testimonial-slider">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <img src="https://www.codewithfaraz.com/tools/placeholder?size=60x60&bgColor=FFCCBC&textColor=D84315&text=AS" alt="Alice Smith" class="avatar">
-                            <p class="quote">"The team at PharmaSleek is truly exceptional. They are not only knowledgeable but also incredibly caring. Their home delivery service is a game-changer for me!"</p>
-                            <p class="name">Alice S.</p>
-                            <p class="role">Long-term Patient</p>
+                            <p class="quote">"Tim di MEDIVERSE benar-benar luar biasa. Mereka tidak hanya berpengetahuan luas tetapi juga sangat peduli. Layanan pengiriman ke rumah mereka benar-benar mengubah segalanya bagi saya!"</p>
+                            <p class="name">Viany</p>
+                            <p class="role">Pasien Jangka Panjang</p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <img src="https://www.codewithfaraz.com/tools/placeholder?size=60x60&bgColor=CFD8DC&textColor=37474F&text=BJ" alt="Bob Johnson" class="avatar">
-                            <p class="quote">"I switched to PharmaSleek a year ago and couldn't be happier. The pharmacists take time to explain everything, and their app makes refills so easy."</p>
-                            <p class="name">Bob J.</p>
-                            <p class="role">Satisfied Customer</p>
+                            <p class="quote">"Saya beralih ke MEDIVERSE setahun yang lalu dan sangat puas. Para apoteker meluangkan waktu untuk menjelaskan semuanya, dan aplikasi mereka membuat pengisian ulang resep menjadi sangat mudah."</p>
+                            <p class="name">Ina J.</p>
+                            <p class="role">Pelanggan Puas</p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                              <img src="https://www.codewithfaraz.com/tools/placeholder?size=60x60&bgColor=E1BEE7&textColor=6A1B9A&text=CW" alt="Clara Williams" class="avatar">
-                            <p class="quote">"Booking a health screening was simple and quick. The staff made me feel comfortable, and I got my results promptly. PharmaSleek is my go-to for health needs."</p>
-                            <p class="name">Clara W.</p>
-                            <p class="role">Health Conscious Individual</p>
+                            <p class="quote">"Pemesanan pemeriksaan kesehatan sangat mudah dan cepat. Staf membuat saya merasa nyaman, dan saya mendapatkan hasilnya dengan cepat. MEDIVERSE adalah pilihan utama saya untuk kebutuhan kesehatan."</p>
+                            <p class="name">jurna</p>
+                            <p class="role">Individu Sadar Kesehatan</p>
                         </div>
                     </div>
                      <div class="swiper-slide">
                         <div class="testimonial-card">
                              <img src="https://www.codewithfaraz.com/tools/placeholder?size=60x60&bgColor=D7CCC8&textColor=4E342E&text=DM" alt="David Miller" class="avatar">
-                            <p class="quote">"Their selection of wellness products is fantastic, and I always find the latest health supplements. The staff's recommendations are always spot on!"</p>
-                            <p class="name">David M.</p>
-                            <p class="role">Wellness Enthusiast</p>
+                            <p class="quote">"Pilihan produk kesehatan mereka fantastis, dan saya selalu menemukan suplemen kesehatan terbaru. Rekomendasi dari staf selalu tepat sasaran!"</p>
+                            <p class="name">Arny</p>
+                            <p class="role">Penggemar Kesehatan</p>
                         </div>
                     </div>
                 </div>
@@ -377,17 +403,17 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
 
     <section id="blog" class="section-padding"> <div class="container">
             <div class="section-title">
-                <h2>Your Daily Dose of Wellness</h2>
-                <p>Explore insightful articles, tips, and news to empower your health journey.</p>
+                <h2>Asupan Kesehatan Harian Anda</h2>
+                <p>Jelajahi artikel, tips, dan berita yang informatif untuk memberdayakan perjalanan kesehatan Anda.</p>
             </div>
             <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="blog-card">
                         <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/mindful-eating-a-path-to-better-health.webp" alt="Mindful Eating: A Path to Better Health">
                         <div class="card-body">
-                            <h5 class="card-title">Mindful Eating: A Path to Better Health</h5>
-                            <p class="card-text">Discover how mindful eating can transform your relationship with food and improve digestion.</p>
-                            <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right ms-1"></i></a>
+                            <h5 class="card-title">Makan dengan Kesadaran: Jalan Menuju Kesehatan yang Lebih Baik</h5>
+                            <p class="card-text">Temukan bagaimana makan dengan penuh kesadaran dapat mengubah hubungan Anda dengan makanan dan meningkatkan pencernaan.</p>
+                            <a href="#" class="read-more">Baca Artikel Lengkap <i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
@@ -395,9 +421,9 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
                     <div class="blog-card">
                         <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/the-benefits-of-a-digital-detox.webp" alt="Blog Post 2">
                         <div class="card-body">
-                            <h5 class="card-title">The Benefits of a Digital Detox</h5>
-                            <p class="card-text">Learn why taking a break from screens can boost your mental clarity and reduce stress.</p>
-                            <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right ms-1"></i></a>
+                            <h5 class="card-title">Manfaat Detoks Digital</h5>
+                            <p class="card-text">Pelajari mengapa beristirahat dari layar dapat meningkatkan kejernihan mental dan mengurangi stres.</p>
+                            <a href="#" class="read-more">Baca Artikel Lengkap<i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
@@ -405,9 +431,9 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
                     <div class="blog-card">
                         <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/simple-ways-to-stay-active-daily.webp" alt="Blog Post 3">
                         <div class="card-body">
-                            <h5 class="card-title">Simple Ways to Stay Active Daily</h5>
-                            <p class="card-text">Incorporate more movement into your routine with these easy and effective tips.</p>
-                            <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right ms-1"></i></a>
+                            <h5 class="card-title">Cara Sederhana untuk Tetap Aktif Setiap Hari</h5>
+                            <p class="card-text">Tambahkan lebih banyak gerakan ke dalam rutinitas Anda dengan tips mudah dan efektif ini.</p>
+                            <a href="#" class="read-more">Baca Artikel Lengkap <i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
@@ -420,24 +446,24 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title">
-                        <h2>Book a Personalized Consultation</h2>
-                        <p>Connect with our expert pharmacists for tailored advice and support.</p>
+                        <h2>Pesan Konsultasi Pribadi</h2>
+                        <p>Hubungi apoteker ahli kami untuk mendapatkan saran dan dukungan yang sesuai dengan kebutuhan Anda.</p>
                     </div>
                     <div class="booking-form">
                         <form id="consultationForm">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="consultName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <label for="consultName" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="consultName" placeholder="e.g., John Doe" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="consultEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                    <label for="consultEmail" class="form-label">Alamat Email</label> <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="consultEmail" placeholder="e.g., name@example.com" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="consultPhone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                    <label for="consultPhone" class="form-label">Nomor Telpon <span class="text-danger">*</span></label>
                                     <input type="tel" class="form-control" id="consultPhone" placeholder="e.g., +1 (555) 123-4567" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -446,22 +472,22 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="consultService" class="form-label">Type of Consultation <span class="text-danger">*</span></label>
+                                <label for="consultService" class="form-label">Jenis Konsultasi <span class="text-danger">*</span></label>
                                 <select class="form-select" id="consultService" required>
-                                    <option selected disabled value="">Please select a service...</option>
-                                    <option value="medication_review">Medication Review & Management</option>
-                                    <option value="vaccination_info">Vaccination & Immunization Advice</option>
-                                    <option value="health_screening_advice">Health Screening Follow-up</option>
-                                    <option value="wellness_planning">Wellness & Lifestyle Planning</option>
-                                    <option value="general_health_query">General Health Inquiry</option>
+                                    <option selected disabled value="">Silakan pilih layanan...</option>
+                                    <option value="medication_review">Tinjauan dan Pengelolaan Obat</option>
+                                    <option value="vaccination_info">Saran Vaksinasi & Imunisasi</option>
+                                    <option value="health_screening_advice">Tindak Lanjut Pemeriksaan Kesehatan</option>
+                                    <option value="wellness_planning">Perencanaan Kesehatan & Gaya Hidup</option>
+                                    <option value="general_health_query">Pertanyaan Umum tentang Kesehatan</option>
                                 </select>
                             </div>
                             <div class="mb-4">
-                                <label for="consultMessage" class="form-label">Additional Notes or Questions</label>
+                                <label for="consultMessage" class="form-label">Catatan atau Pertanyaan Tambahan</label>
                                 <textarea class="form-control" id="consultMessage" rows="4" placeholder="Let us know if you have specific questions or concerns..."></textarea>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn-lg">Request Appointment</button>
+                                <button type="submit" class="btn btn-primary btn-lg">Minta Janji Temu</button>
                             </div>
                         </form>
                          <div id="consultationFormFeedback" class="mt-4"></div>
@@ -473,67 +499,67 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
 
     <section id="faq" class="section-padding faq-section"> <div class="container">
             <div class="section-title">
-                <h2>Answers to Your Questions</h2>
-                <p>Find quick answers to common inquiries about PharmaSleek services and policies.</p>
+                <h2>Jawaban atas Pertanyaan Anda</h2>
+                <p>Temukan jawaban cepat untuk pertanyaan umum tentang layanan dan kebijakan PharmaSleek.</p>
             </div>
             <div class="accordion" id="faqAccordion">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            How can I easily transfer my prescriptions to PharmaSleek?
+                            Bagaimana cara saya mentransfer resep saya ke PharmaSleek dengan mudah?
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            Transferring your prescriptions is simple! You can call us with your current pharmacy's details, bring in your prescription bottles, or use our secure online transfer form on our website. Our team will handle the entire process smoothly for you.
+                            Memindahkan resep Anda sangat mudah! Anda dapat menghubungi kami dengan detail apotek Anda saat ini, membawa botol resep Anda, atau menggunakan formulir transfer online yang aman di situs web kami. Tim kami akan menangani seluruh proses dengan lancar untuk Anda.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            What are the benefits of your home delivery service?
+                           Apa saja manfaat dari layanan pengiriman ke rumah Anda?
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            Our home delivery service is designed for your convenience. We offer free, fast, and discreet delivery of your prescriptions and selected health products right to your doorstep, saving you time and effort. We serve most local areas; please contact us to confirm eligibility.
+                           Layanan pengiriman ke rumah kami dirancang untuk kenyamanan Anda. Kami menawarkan pengiriman resep dan produk kesehatan pilihan secara gratis, cepat, dan rahasia langsung ke depan pintu Anda, sehingga menghemat waktu dan tenaga Anda. Kami melayani sebagian besar wilayah lokal; silakan hubungi kami untuk memastikan kelayakan.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Which insurance plans are accepted at PharmaSleek?
+                           Jenis asuransi apa saja yang diterima di MEDIVERSE?
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            PharmaSleek accepts a wide array of major insurance plans. To verify if your specific plan is covered, please call our pharmacy, visit us with your insurance card, or check our online insurance checker. Our staff is always ready to assist you.
+                            MEDIVERSE menerima berbagai macam rencana asuransi utama. Untuk memverifikasi apakah rencana asuransi Anda tercakup, silakan hubungi apotek kami, kunjungi kami dengan kartu asuransi Anda, atau periksa pengecek asuransi online kami. Staf kami selalu siap membantu Anda.
                         </div>
                     </div>
                 </div>
                  <div class="accordion-item">
                     <h2 class="accordion-header" id="headingFour">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Are appointments required for vaccinations?
+                           Apakah perlu membuat janji temu untuk vaksinasi?
                         </button>
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            For most routine vaccinations, such as flu shots, appointments are not strictly required, but they are recommended to minimize your wait time. For specialized travel vaccines or other specific immunizations, please call ahead or book an appointment online.
+                            Untuk sebagian besar vaksinasi rutin, seperti vaksin flu, janji temu tidak sepenuhnya wajib, tetapi disarankan untuk meminimalkan waktu tunggu Anda. Untuk vaksin perjalanan khusus atau imunisasi spesifik lainnya, harap hubungi terlebih dahulu atau buat janji temu secara online.
                         </div>
                     </div>
                 </div>
                  <div class="accordion-item">
                     <h2 class="accordion-header" id="headingFive">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            How does Medication Therapy Management (MTM) work?
+                            Bagaimana cara kerja Manajemen Terapi Obat (MTM)?
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
                         <div class="accordion-body">
-                            Medication Therapy Management (MTM) is a personalized service where our pharmacists work closely with you and your doctor to ensure your medications are safe, effective, and appropriate for your health conditions. This includes a comprehensive medication review, identifying potential drug interactions, and creating a personalized medication action plan.
+                            Manajemen Terapi Obat (MTM) adalah layanan personal di mana apoteker kami bekerja sama dengan Anda dan dokter Anda untuk memastikan obat-obatan Anda aman, efektif, dan sesuai dengan kondisi kesehatan Anda. Ini termasuk tinjauan obat yang komprehensif, mengidentifikasi potensi interaksi obat, dan membuat rencana tindakan pengobatan yang dipersonalisasi.
                         </div>
                     </div>
                 </div>
@@ -545,14 +571,14 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
-                    <h3>Stay Connected, Stay Healthy</h3>
-                    <p>Subscribe to the PharmaSleek newsletter for exclusive health insights, updates on new services, and special offers delivered to your inbox.</p>
+                    <h3>Tetap Terhubung, Tetap Sehat</h3>
+                    <p>Berlangganan buletin PharmaSleek untuk mendapatkan wawasan kesehatan eksklusif, pembaruan tentang layanan baru, dan penawaran khusus yang dikirimkan langsung ke kotak masuk Anda.</p>
                 </div>
                 <div class="col-lg-6">
                     <form id="newsletterForm" class="newsletter-form">
                         <div class="input-group">
                             <input type="email" class="form-control form-control-lg" id="newsletterEmail" placeholder="Your Email Address" required aria-label="Email Address for Newsletter">
-                            <button class="btn btn-primary" type="submit">Subscribe Now</button>
+                            <button class="btn btn-primary" type="submit">Berlangganan Sekarang</button>
                         </div>
                         <div id="newsletterFeedback" class="mt-2 text-center text-lg-start"></div>
                     </form>
@@ -564,41 +590,41 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
     <section id="contact" class="section-padding">
         <div class="container">
             <div class="section-title">
-                <h2>Connect With Us Today</h2>
-                <p>We are here to assist you. Reach out with your questions, or plan your visit to our pharmacy.</p>
+                <h2>Hubung Dengan Kami Sekarang</h2>
+                <p>Kami siap membantu Anda. Hubungi kami jika ada pertanyaan, atau rencanakan kunjungan Anda ke apotek kami.</p>
             </div>
             <div class="row">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="contact-form h-100 d-flex flex-column">
-                        <h4 class="mb-4">Send a Secure Message</h4>
+                        <h4 class="mb-4">Kirim Pesan Aman</h4>
                         <form id="contactForm" class="flex-grow-1">
                             <div class="mb-3">
-                                <label for="contactName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                <label for="contactName" class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="contactName" placeholder="Your Full Name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="contactEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                <label for="contactEmail" class="form-label">Alamat Email  <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" id="contactEmail" placeholder="your.email@example.com" required>
                             </div>
                             <div class="mb-3">
-                                <label for="contactSubject" class="form-label">Subject <span class="text-danger">*</span></label>
+                                <label for="contactSubject" class="form-label">Subjek <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="contactSubject" placeholder="Reason for Contact" required>
                             </div>
                             <div class="mb-3">
-                                <label for="contactMessage" class="form-label">Your Message <span class="text-danger">*</span></label>
+                                <label for="contactMessage" class="form-label">Pesan Anda <span class="text-danger">*</span></label>
                                 <textarea class="form-control" id="contactMessage" rows="5" placeholder="Please type your message here..." required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">Kirim Pesan</button>
                         </form>
                         <div id="contactFormFeedback" class="mt-3"></div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <h4 class="mb-4">Our Pharmacy Details</h4>
+                    <h4 class="mb-4">Detail Apotek Kami</h4>
                     <div class="contact-info-item">
                         <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
                         <div>
-                            <strong>Visit Us:</strong>
+                            <strong>Kunjungi Kami:</strong>
                             123 Health St, Wellness City, HC 45678, USA
                         </div>
                     </div>
@@ -613,13 +639,13 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
                         <div class="icon"><i class="fas fa-envelope-open-text"></i></div>
                         <div>
                             <strong>Email Us:</strong>
-                            <a href="mailto:info@pharmasleek.com">info@pharmasleek.com</a>
+                            <a href="mailto:info@pharmasleek.com">info@Mediverse.com</a>
                         </div>
                     </div>
                     <div class="contact-info-item">
                         <div class="icon"><i class="far fa-clock"></i></div>
                         <div>
-                            <strong>Operating Hours:</strong>
+                            <strong>Jam Operasional:</strong>
                             Mon - Fri: 8:30 AM - 7:30 PM<br>
                             Sat: 9:00 AM - 4:00 PM<br>
                             Sun: Closed
@@ -637,32 +663,32 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                    <h5><i class="fas fa-prescription-bottle-medical me-2"></i>PharmaSleek</h5>
-                    <p class="small">Your dedicated partner in achieving optimal health and wellness. We are committed to providing exceptional pharmaceutical care, expert advice, and a comprehensive range of health products.</p>
+                    <h5><i class="fas fa-prescription-bottle-medical me-2"></i>MEDIVERSE</h5>
+                    <p class="small">Mitra setia Anda dalam mencapai kesehatan dan kesejahteraan optimal. Kami berkomitmen untuk menyediakan perawatan farmasi yang luar biasa, saran ahli, dan rangkaian produk kesehatan yang komprehensif.</p>
                 </div>
                 <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h5>Explore</h5>
+                    <h5>Mengeksplorasi</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#latest-medicines">New In</a></li>
-                        <li><a href="#offers">Offers</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#services">Layanan</a></li>
+                        <li><a href="#products">Produk</a></li>
+                        <li><a href="#latest-medicines">Baru Masuk</a></li>
+                        <li><a href="#offers">Penawaran</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5>Support</h5>
+                    <h5>Mendukung</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#faq">FAQ</a></li>
-                        <li><a href="#consultation">Book Consultation</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#faq">Pertanyaan Umum</a></li>
+                        <li><a href="#consultation">Konsultasi Buku</a></li>
+                        <li><a href="#contact">Konta Kami</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Ketentuan Layanan</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5>Follow Our Journey</h5>
-                     <p class="small mb-2">Stay updated with our latest news and health tips on social media.</p>
+                    <h5>Ikuti Perjalanan Kami</h5>
+                     <p class="small mb-2">Ikuti terus berita terbaru dan tips kesehatan kami di media sosial.</p>
                     <div class="social-icons">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -672,8 +698,8 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] !== "login") {
                 </div>
             </div>
             <div class="copyright">
-                © <span id="currentYear"></span> PharmaSleek. All Rights Reserved.
-                Designed with <i class="fas fa-heart text-danger"></i> by <a href="https://codewithfaraz.com/" target="_blank" rel="noopener noreferrer">codewithfaraz.com</a>.
+                © <span id="currentYear"></span> MEDIVERSE. Seluruh Hak Dilindungi Undang-Undang.
+               Dirancang dengan <i class="fas fa-heart text-danger"></i> by <a href="https://codewithfaraz.com/" target="_blank" rel="noopener noreferrer">codewithfaraz.com</a>.
             </div>
         </div>
     </footer>
