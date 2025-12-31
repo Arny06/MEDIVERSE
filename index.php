@@ -1,5 +1,13 @@
 <?php
-include "koneksi.php"; // Pastikan nama filenya benar
+session_start();
+include "koneksi.php";
+
+
+if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
+    $akses = 1; 
+} else {
+    $akses = 2; 
+}
 ?>
 
 
@@ -25,51 +33,71 @@ include "koneksi.php"; // Pastikan nama filenya benar
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg" id="mainNavbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="fas fa-prescription-bottle-medical"></i> MEDIVERSE
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                     <ul class="navbar-nav ms-auto ml-auto"></ul>
-                    <li class="nav-item text-center">
-                        <a class="nav-link active" aria-current="page" href="#about">Tentang Kami</a>
+    <div class="container">
+        <a class="navbar-brand" href="index.php">
+            <i class="fas fa-prescription-bottle-medical"></i> MEDIVERSE
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto text-center">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.php">
+                        🏠 Beranda
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="customer/daftar_obat.php">💊 Daftar Obat</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="customer/informasi_obat.php">
+                        📋 Informasi Obat
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="cara_pesan.php">
+                        📦 Cara Pemesanan
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="lokasi.php">
+                        📍 Lokasi Apotek
+                    </a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="customer/profil.php">👤 Profil</a>
                     </li>
-                    <li class="nav-item text-center">
-                        <a class="nav-link" href="#services">Layanan</a>
+
+                <?php if ($akses == 1) { ?>
+                   <li class="nav-item">
+                        <a class="nav-link text-danger" href="logout.php"
+                           onclick="return confirm('Apakah Anda yakin ingin logout?');">🚪 Logout</a>
                     </li>
-                    <li class="nav-item text-center">
-                        <a class="nav-link" href="#products">Produk</a>
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" href="login.php">🔑 Login</a>
                     </li>
-                    <li class="nav-item text-center">
-                        <a class="nav-link" href="#latest-medicines">Pendatang Baru</a> </li>
-                    <li class="nav-item text-center">
-                        <a class="nav-link" href="#offers">Penawaran</a> </li>
-                    <li class="nav-item text-center">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
-                    <li class="nav-item text-center">
-                        <a class="nav-link" href="#contact">Kontak</a>
-             </li>
-        <li class="nav-item text-center">
-            <a class="nav-link" href="login.php">Login</a>
-        </li>
-        <li class="nav-item text-center">
-            <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
+                <?php } ?>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
     <section id="hero" class="hero-section">
         <div class="container">
             <div class="hero-content">
-                <h1>MEDIVERSE Hadir Untuk Memeberikan Kemudahan Maksimal, Kepercayaan Total.</h1>
-                <p>Temukan era baru pelayanan farmasi dengan MEDIVERSE. <br>Sumber terpercaya Anda untuk obat-obatan, saran ahli, dan masa depan yang lebih sehat.</p>
+                <h1>SELAMAT DATANG DI APOTEK MEDIVERSE.</h1>
+                <p>Mendukung Pelayanan Kesehatan yang Efisien dan Akurat,<br>Temukan era baru pelayanan farmasi dengan MEDIVERSE.</p>
                 <a href="#services" class="btn btn-primary btn-lg btn-hero">Jelajahi Layanan</a>
                 <a href="#latest-medicines" class="btn btn-outline-light btn-lg btn-hero">Obat Baru</a>
             </div>
@@ -80,7 +108,7 @@ include "koneksi.php"; // Pastikan nama filenya benar
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/welcome-to-pharmasleek.webp" alt="About PharmaSleek Team" class="img-fluid about-us-img">
+                    <img src="https://www.k24klik.com/blog/wp-content/uploads/2017/05/pharmacies.jpg" alt="About PharmaSleek Team" class="img-fluid about-us-img">
                 </div>
                 <div class="col-lg-6 about-us-content">
                     <div class="section-title text-start ps-lg-3">
@@ -98,262 +126,6 @@ include "koneksi.php"; // Pastikan nama filenya benar
         </div>
     </section>
 
-    <!-- <section id="services" class="section-padding bg-light">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Comprehensive Services</h2>
-                <p>Delivering excellence in pharmaceutical care, tailored to your needs.</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-card">
-                        <div class="icon"><i class="fas fa-pills"></i></div>
-                        <h4>Prescription Services</h4>
-                        <p>Accurate, fast, and reliable prescription filling, with options for easy refills and medication synchronization.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-card">
-                        <div class="icon"><i class="fas fa-syringe"></i></div>
-                        <h4>Immunizations & Vaccines</h4>
-                        <p>Protect yourself and your loved ones with a wide range of vaccines, administered by our certified pharmacists.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-card">
-                        <div class="icon"><i class="fas fa-stethoscope"></i></div> 
-                        <h4>Health Screenings</h4>
-                        <p>Convenient health monitoring services, including blood pressure, cholesterol, and glucose screenings.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-card">
-                        <div class="icon"><i class="fas fa-capsules"></i></div> 
-                        <h4>OTC & Wellness Products</h4>
-                        <p>An extensive selection of over-the-counter medications, vitamins, supplements, and personal care items.</p>
-                    </div>
-                </div>
-                 <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-card">
-                        <div class="icon"><i class="fas fa-shipping-fast"></i></div> 
-                        <h4>Express Delivery</h4>
-                        <p>Get your prescriptions and health essentials delivered to your doorstep, quickly and discreetly.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-card">
-                        <div class="icon"><i class="fas fa-user-nurse"></i></div>
-                        <h4>Medication Therapy Management</h4>
-                        <p>Personalized consultations to review your medications, optimize effectiveness, and minimize side effects.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-  <section id="products" class="section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>Produk Kesehatan Unggulan (MEDIVERSE)</h2>
-                <p>Kami menghadirkan rangkaian produk farmasi dan kesehatan pilihan untuk mendukung gaya hidup sehat Anda, mulai dari pencegahan hingga pemulihan.</p>
-            </div>
-            <div class="swiper product-swiper">
-                <div class="swiper-wrapper">
-                                            <?php
-                        // Pastikan koneksi ($koneksi) sudah tersedia
-                        
-                        // 1. Query untuk mengambil data obat
-                        $queryObat = mysqli_query($koneksi, "SELECT * FROM tb_obat");
-                        
-                        // Cek apakah ada data yang ditemukan
-                        if (mysqli_num_rows($queryObat) > 0) {
-                            
-                            while ($rowObat = mysqli_fetch_array($queryObat)) {
-                                
-                                // Ambil NAMA FILE gambar (misalnya 'metformin.jpg', 'jahe.jpg') dari kolom 'gambar'
-                                $namaFileGambar = $rowObat['gambar']; 
-                                
-                                // ************ BARIS KOREKSI ************
-                                // Gabungkan BASE PATH ('upload/') dengan NAMA FILE DINAMIS ($namaFileGambar)
-                                // Contoh hasil: 'upload/jahe.jpg', 'upload/cetirizine.png'
-                                $urlGambarFinal = 'upload/' . $namaFileGambar; 
-                                
-                                // Ambil nama obat untuk judul dan alt text
-                                // Variabel $metformin diganti menjadi $namaObat agar lebih konsisten
-                                $namaObat = $rowObat['nm_obat']; 
-                                
-                                echo '<div class="swiper-slide">
-                                        <div class="product-card">
-                                            
-                                            <img src="'.$urlGambarFinal.'" alt="'.$namaObat.'"> 
-                                            
-                                            <div class="card-body">
-                                                
-                                                <h5 class="card-title">'.$namaObat.'</h5>
-                                                
-                                                <p class="card-text text-muted">"Produk Pilihan Apoteker Resmi. Kesehatan Optimal Kini Ada di Genggaman Anda"</p>
-                                                <p class="price">Rp '.$rowObat['harga'].'</p>
-                                                <a href="#" class="btn btn-outline-primary btn-sm w-100">Learn More</a>
-                                            </div>
-                                        </div>
-                                    </div>';
-                            }
-                        } else {
-                            // Pesan jika database kosong
-                            echo '<div class="col-12"><p class="text-center">Tidak ada data obat yang tersedia.</p></div>';
-                        }
-                    ?>
-                    <!-- <div class="swiper-slide">
-                        <div class="product-card">
-                            <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/advanced-probiotic-blend.webp" alt="Advanced Probiotic Blend">
-                            <div class="card-body">
-                                <h5 class="card-title">Advanced Probiotic Blend</h5>
-                                <p class="card-text text-muted">Supports digestive balance and gut health.</p>
-                                <p class="price">$25.99</p>
-                                <a href="#" class="btn btn-outline-primary btn-sm w-100">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-                            <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/herbal-sleep-aid.webp" alt="Herbal Sleep Aid">
-                            <div class="card-body">
-                                <h5 class="card-title">Herbal Sleep Aid</h5>
-                                <p class="card-text text-muted">Natural formula for restful sleep.</p>
-                                <p class="price">$14.25</p>
-                                <a href="#" class="btn btn-outline-primary btn-sm w-100">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-                            <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/omega-3-fish-oil.webp" alt="Omega-3 Fish Oil">
-                            <div class="card-body">
-                                <h5 class="card-title">Omega-3 Fish Oil</h5>
-                                <p class="card-text text-muted">Supports heart and brain health.</p>
-                                <p class="price">$20.00</p>
-                                <a href="#" class="btn btn-outline-primary btn-sm w-100">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="swiper-slide">
-                        <div class="product-card">
-                            <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/adult-multivitamin-gummies.webp" alt="Adult Multivitamin Gummies">
-                            <div class="card-body">
-                                <h5 class="card-title">Adult Multivitamin Gummies</h5>
-                                <p class="card-text text-muted">Tasty way to get essential daily nutrients.</p>
-                                <p class="price">$16.99</p>
-                                <a href="#" class="btn btn-outline-primary btn-sm w-100">Learn More</a>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="latest-medicines" class="section-padding bg-light">
-    <div class="container">
-        <div class="section-title">
-            <h2>Produk Baru & Inovasi</h2>
-            <p>Tetap terdepan dengan kemajuan terbaru dalam perawatan farmasi dan produk kesehatan.</p>
-        </div>
-        <div class="row">
-            
-            <?php
-                // Asumsi: Variabel $koneksi sudah terkoneksi ke database.
-                
-                // ************ KOREKSI DI SINI ************
-                // 1. Query hanya mengambil 4 data (LIMIT 4). 
-                //    Gunakan ORDER BY id_obat DESC untuk memastikan data yang ditampilkan adalah yang terbaru.
-                $queryObat = mysqli_query($koneksi, "SELECT * FROM tb_obat ORDER BY id_obat DESC LIMIT 4");
-                
-                if (mysqli_num_rows($queryObat) > 0) {
-                    
-                    while ($rowObat = mysqli_fetch_array($queryObat)) {
-                        
-                        $namaFileGambar = $rowObat['gambar']; 
-                        $namaObat = $rowObat['nm_obat'];
-                        $hargaObat = $rowObat['harga'];
-                        
-                        // Gabungkan PATH DINAMIS (Misal: 'upload/Vitamin.png')
-                        $urlGambarFinal = 'upload/' . $namaFileGambar; 
-                        
-                        // 2. Output HTML dinamis untuk setiap kartu obat
-                        echo '<div class="col-md-6 col-lg-3 mb-4">
-                                <div class="medicine-card">
-                                    <img src="'.$urlGambarFinal.'" alt="'.$namaObat.'">
-                                    <div class="card-body">
-                                        <h5 class="card-title">'.$namaObat.'</h5>
-                                        <p class="card-text text-muted">Produk Asli dan Terjamin dari sumber farmasi resmi MEDIVERSE.</p> 
-                                        <p class="price">Rp '.$hargaObat.'</p>
-                                        <a href="#" class="btn btn-primary btn-sm w-100">Details</a>
-                                    </div>
-                                </div>
-                            </div>';
-                    }
-                } else {
-                    echo '<div class="col-12"><p class="text-center">Tidak ada data obat baru yang tersedia.</p></div>';
-                }
-            ?>
-
-        </div>
-    </div>
-</section>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="offers" class="discount-offer-section">
-        <div class="container">
-            <h2>Penawaran Kesehatan Terbatas! </h2>
-            <p>"Jadikan Sehat Anda Prioritas. Klik Sekarang dan Temukan Diskon Kesejahteraan Terbaik!"</p>
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-8">
-                    <span class="display-4">Hemat hingga 25%</span>
-                    <p class="lead">Penawaran khusus untuk semua merek vitamin & suplemen minggu ini!</p>
-                    <a href="#products" class="btn btn-light btn-lg">Belanja Sekarang & Hemat</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="why-choose-us" class="section-padding"> <div class="container">
-            <div class="section-title">
-                <h2>Mengapa Anda Harus Mempercayakan Kesehatan Anda kepada MEDIVERSE?</h2>
-                <p>Temukan perbedaan MEDIVERSE – tempat perhatian, keahlian, dan kenyamanan bertemu.</p>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="feature-item">
-                        <div class="icon"><i class="fas fa-hand-holding-medical"></i></div>
-                        <h5>Pelayanan Berpusat pada Kebutuhan Anda.</h5>
-                        <p>Lebih personal dan langsung, berfokus pada apa yang dibutuhkan pasien</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="feature-item">
-                        <div class="icon"><i class="fas fa-users-cog"></i></div>
-                        <h5>Staf yang Berkualifikasi & Peduli</h5>
-                        <p>Tim kami yang terdiri dari apoteker dan profesional kesehatan berpengalaman siap melayani Anda.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="feature-item">
-                        <div class="icon"><i class="fas fa-shield-alt"></i></div> 
-                        <h5>Kualitas & Kepercayaan</h5>
-                        <p>Kami mematuhi standar kualitas dan etika tertinggi dalam semua produk dan layanan kami.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section id="testimonials" class="section-padding bg-light">
         <div class="container">
@@ -401,191 +173,7 @@ include "koneksi.php"; // Pastikan nama filenya benar
         </div>
     </section>
 
-    <section id="blog" class="section-padding"> <div class="container">
-            <div class="section-title">
-                <h2>Asupan Kesehatan Harian Anda</h2>
-                <p>Jelajahi artikel, tips, dan berita yang informatif untuk memberdayakan perjalanan kesehatan Anda.</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="blog-card">
-                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/mindful-eating-a-path-to-better-health.webp" alt="Mindful Eating: A Path to Better Health">
-                        <div class="card-body">
-                            <h5 class="card-title">Makan dengan Kesadaran: Jalan Menuju Kesehatan yang Lebih Baik</h5>
-                            <p class="card-text">Temukan bagaimana makan dengan penuh kesadaran dapat mengubah hubungan Anda dengan makanan dan meningkatkan pencernaan.</p>
-                            <a href="#" class="read-more">Baca Artikel Lengkap <i class="fas fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="blog-card">
-                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/the-benefits-of-a-digital-detox.webp" alt="Blog Post 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Manfaat Detoks Digital</h5>
-                            <p class="card-text">Pelajari mengapa beristirahat dari layar dapat meningkatkan kejernihan mental dan mengurangi stres.</p>
-                            <a href="#" class="read-more">Baca Artikel Lengkap<i class="fas fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="blog-card">
-                        <img src="https://raw.githubusercontent.com/farazc60/Project-Images/refs/heads/main/Pharmacy%20Website%20Template/simple-ways-to-stay-active-daily.webp" alt="Blog Post 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Cara Sederhana untuk Tetap Aktif Setiap Hari</h5>
-                            <p class="card-text">Tambahkan lebih banyak gerakan ke dalam rutinitas Anda dengan tips mudah dan efektif ini.</p>
-                            <a href="#" class="read-more">Baca Artikel Lengkap <i class="fas fa-arrow-right ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="consultation" class="section-padding bg-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title">
-                        <h2>Pesan Konsultasi Pribadi</h2>
-                        <p>Hubungi apoteker ahli kami untuk mendapatkan saran dan dukungan yang sesuai dengan kebutuhan Anda.</p>
-                    </div>
-                    <div class="booking-form">
-                        <form id="consultationForm">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="consultName" class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="consultName" placeholder="e.g., John Doe" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="consultEmail" class="form-label">Alamat Email</label> <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="consultEmail" placeholder="e.g., name@example.com" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="consultPhone" class="form-label">Nomor Telpon <span class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control" id="consultPhone" placeholder="e.g., +1 (555) 123-4567" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="consultDate" class="form-label">Preferred Date <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="consultDate" placeholder="Select a date" required>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="consultService" class="form-label">Jenis Konsultasi <span class="text-danger">*</span></label>
-                                <select class="form-select" id="consultService" required>
-                                    <option selected disabled value="">Silakan pilih layanan...</option>
-                                    <option value="medication_review">Tinjauan dan Pengelolaan Obat</option>
-                                    <option value="vaccination_info">Saran Vaksinasi & Imunisasi</option>
-                                    <option value="health_screening_advice">Tindak Lanjut Pemeriksaan Kesehatan</option>
-                                    <option value="wellness_planning">Perencanaan Kesehatan & Gaya Hidup</option>
-                                    <option value="general_health_query">Pertanyaan Umum tentang Kesehatan</option>
-                                </select>
-                            </div>
-                            <div class="mb-4">
-                                <label for="consultMessage" class="form-label">Catatan atau Pertanyaan Tambahan</label>
-                                <textarea class="form-control" id="consultMessage" rows="4" placeholder="Let us know if you have specific questions or concerns..."></textarea>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn-lg">Minta Janji Temu</button>
-                            </div>
-                        </form>
-                         <div id="consultationFormFeedback" class="mt-4"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq" class="section-padding faq-section"> <div class="container">
-            <div class="section-title">
-                <h2>Jawaban atas Pertanyaan Anda</h2>
-                <p>Temukan jawaban cepat untuk pertanyaan umum tentang layanan dan kebijakan PharmaSleek.</p>
-            </div>
-            <div class="accordion" id="faqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Bagaimana cara saya mentransfer resep saya ke PharmaSleek dengan mudah?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Memindahkan resep Anda sangat mudah! Anda dapat menghubungi kami dengan detail apotek Anda saat ini, membawa botol resep Anda, atau menggunakan formulir transfer online yang aman di situs web kami. Tim kami akan menangani seluruh proses dengan lancar untuk Anda.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                           Apa saja manfaat dari layanan pengiriman ke rumah Anda?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                           Layanan pengiriman ke rumah kami dirancang untuk kenyamanan Anda. Kami menawarkan pengiriman resep dan produk kesehatan pilihan secara gratis, cepat, dan rahasia langsung ke depan pintu Anda, sehingga menghemat waktu dan tenaga Anda. Kami melayani sebagian besar wilayah lokal; silakan hubungi kami untuk memastikan kelayakan.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                           Jenis asuransi apa saja yang diterima di MEDIVERSE?
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            MEDIVERSE menerima berbagai macam rencana asuransi utama. Untuk memverifikasi apakah rencana asuransi Anda tercakup, silakan hubungi apotek kami, kunjungi kami dengan kartu asuransi Anda, atau periksa pengecek asuransi online kami. Staf kami selalu siap membantu Anda.
-                        </div>
-                    </div>
-                </div>
-                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                           Apakah perlu membuat janji temu untuk vaksinasi?
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Untuk sebagian besar vaksinasi rutin, seperti vaksin flu, janji temu tidak sepenuhnya wajib, tetapi disarankan untuk meminimalkan waktu tunggu Anda. Untuk vaksin perjalanan khusus atau imunisasi spesifik lainnya, harap hubungi terlebih dahulu atau buat janji temu secara online.
-                        </div>
-                    </div>
-                </div>
-                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFive">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Bagaimana cara kerja Manajemen Terapi Obat (MTM)?
-                        </button>
-                    </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Manajemen Terapi Obat (MTM) adalah layanan personal di mana apoteker kami bekerja sama dengan Anda dan dokter Anda untuk memastikan obat-obatan Anda aman, efektif, dan sesuai dengan kondisi kesehatan Anda. Ini termasuk tinjauan obat yang komprehensif, mengidentifikasi potensi interaksi obat, dan membuat rencana tindakan pengobatan yang dipersonalisasi.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="newsletter" class="newsletter-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
-                    <h3>Tetap Terhubung, Tetap Sehat</h3>
-                    <p>Berlangganan buletin PharmaSleek untuk mendapatkan wawasan kesehatan eksklusif, pembaruan tentang layanan baru, dan penawaran khusus yang dikirimkan langsung ke kotak masuk Anda.</p>
-                </div>
-                <div class="col-lg-6">
-                    <form id="newsletterForm" class="newsletter-form">
-                        <div class="input-group">
-                            <input type="email" class="form-control form-control-lg" id="newsletterEmail" placeholder="Your Email Address" required aria-label="Email Address for Newsletter">
-                            <button class="btn btn-primary" type="submit">Berlangganan Sekarang</button>
-                        </div>
-                        <div id="newsletterFeedback" class="mt-2 text-center text-lg-start"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <section id="contact" class="section-padding">
         <div class="container">
@@ -632,7 +220,7 @@ include "koneksi.php"; // Pastikan nama filenya benar
                         <div class="icon"><i class="fas fa-phone-volume"></i></div>
                         <div>
                             <strong>Call Us:</strong>
-                            <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                            <a href="tel:+15551234567">+16 81215140740</a>
                         </div>
                     </div>
                      <div class="contact-info-item">
