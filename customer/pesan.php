@@ -1,22 +1,39 @@
 <?php
 session_start();
-include "../koneksi.php"; // pastikan path sesuai lokasi file koneksi
+include "../koneksi.php";
 
-// CEGAH AKSES JIKA BELUM LOGIN
-if (!isset($_SESSION['status']) || $_SESSION['status'] != 'pesan') {
-    header("Location: ../customer/proses_pesan.php");
-    exit();
+
+$id = $_GET['id'] ?? null;
+if (!$id) {
+    die("Obat tidak ditemukan");
 }
 
-// Ambil id_obat dari query string
+$obat = mysqli_fetch_assoc(mysqli_query(
+    $koneksi,
+    "SELECT * FROM tb_obat WHERE id_obat=$id"
+));
+
+if (!$obat) {
+    die("Obat tidak ditemukan");
+}
+
+
+// ===============================
+// AMBIL ID OBAT
+// ===============================
 $id_obat = $_GET['id'] ?? '';
 
 if ($id_obat == '') {
-    echo "<script>alert('Obat tidak ditemukan!'); window.location='informasi_obat.php';</script>";
+    echo "<script>
+            alert('Obat tidak ditemukan!');
+            window.location='informasi_obat.php';
+          </script>";
     exit();
 }
 
-// Query untuk mengambil data obat
+// ===============================
+// AMBIL DATA OBAT
+// ===============================
 $query = mysqli_query($koneksi, "SELECT * FROM tb_obat WHERE id_obat='$id_obat'");
 if (!$query) {
     die("Query gagal: " . mysqli_error($koneksi));
@@ -24,7 +41,10 @@ if (!$query) {
 
 $obat = mysqli_fetch_assoc($query);
 if (!$obat) {
-    echo "<script>alert('Obat tidak ditemukan!'); window.location='informasi_obat.php';</script>";
+    echo "<script>
+            alert('Obat tidak ditemukan!');
+            window.location='informasi_obat.php';
+          </script>";
     exit();
 }
 ?>
@@ -42,25 +62,35 @@ if (!$obat) {
     <h3 class="mb-4">Form Pemesanan Obat</h3>
 
     <form action="proses_pesan.php" method="post">
-        <input type="hidden" name="id_obat" value="<?= htmlspecialchars($obat['id_obat']); ?>">
+
+        <!-- kirim id obat -->
+        <input type="hidden" name="id_obat" value="<?= $obat['id_obat']; ?>">
 
         <div class="mb-3">
             <label class="form-label">Nama Obat</label>
-            <input type="text" class="form-control" value="<?= htmlspecialchars($obat['nm_obat']); ?>" readonly>
+            <input type="text" class="form-control"
+                   value="<?= htmlspecialchars($obat['nm_obat']); ?>" readonly>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Harga</label>
-            <input type="text" class="form-control" value="Rp <?= number_format($obat['harga'],0,',','.'); ?>" readonly>
+            <input type="text" class="form-control"
+                   value="Rp <?= number_format($obat['harga'],0,',','.'); ?>" readonly>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Jumlah</label>
-            <input type="number" name="jumlah" class="form-control" required min="1">
+            <input type="number" name="jumlah" class="form-control"
+                   min="1" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
-        <a href="informasi_obat.php" class="btn btn-secondary">Batal</a>
+        <button type="submit" class="btn btn-primary">
+            Pesan Sekarang
+        </button>
+
+        <a href="informasi_obat.php" class="btn btn-secondary">
+            Batal
+        </a>
     </form>
 </div>
 

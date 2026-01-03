@@ -34,7 +34,27 @@ function safe_get($data, $key) {
             <p><strong>Aturan Pakai:</strong><br><?= nl2br(safe_get($data, 'aturan_pakai')); ?></p>
             <p><strong>Efek Samping:</strong><br><?= nl2br(safe_get($data, 'efek_samping')); ?></p>
             <a href="pesan.php?id=<?= $data['id_obat']; ?>" class="btn btn-primary mt-2">Pesan Sekarang</a>
-        </div>
+        </div><div class="d-flex gap-2 mt-3">
+    <!-- PESAN -->
+    <a href="pesan.php?id_obat=<?= $data['id_obat']; ?>"
+       class="btn btn-primary btn-sm">
+        Pesan
+    </a>
+
+    <!-- EDIT -->
+    <a href="edit_obat.php?id_obat=<?= $data['id_obat']; ?>"
+       class="btn btn-warning btn-sm">
+        ✏️ Edit
+    </a>
+
+    <!-- HAPUS -->
+    <a href="hapus_obat.php?id_obat=<?= $data['id_obat']; ?>"
+       class="btn btn-danger btn-sm"
+       onclick="return confirm('Yakin ingin menghapus obat ini?')">
+        🗑️ Hapus
+    </a>
+</div>
+
     <?php } ?>
 
     <a href="../index.php" class="btn btn-secondary mt-3">Kembali ke Beranda</a>

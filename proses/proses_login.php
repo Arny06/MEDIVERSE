@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__ . '/../koneksi.php';
 
+// 🔒 Validasi input
 if (!isset($_POST['nama']) || !isset($_POST['pass'])) {
     header("Location: ../login.php");
     exit();
@@ -12,7 +13,7 @@ $password = $_POST['pass'];
 
 
 // =======================
-// 1️⃣ CEK LOGIN ADMIN
+// 1️⃣ LOGIN ADMIN
 // =======================
 $qAdmin = mysqli_query($koneksi,
     "SELECT id_admin, username, password 
@@ -23,8 +24,8 @@ $qAdmin = mysqli_query($koneksi,
 if (mysqli_num_rows($qAdmin) > 0) {
     $admin = mysqli_fetch_assoc($qAdmin);
 
-    // jika password admin masih plain text
-    if ($password == $admin['password']) {
+    // ⚠️ password admin masih plaintext
+    if ($password === $admin['password']) {
 
         $_SESSION['status'] = 'login';
         $_SESSION['role']   = 'admin';
@@ -38,7 +39,7 @@ if (mysqli_num_rows($qAdmin) > 0) {
 
 
 // =======================
-// 2️⃣ CEK LOGIN PELANGGAN
+// 2️⃣ LOGIN PELANGGAN
 // =======================
 $qUser = mysqli_query($koneksi,
     "SELECT id_pelanggan, nm_pelanggan, password
@@ -48,22 +49,23 @@ $qUser = mysqli_query($koneksi,
 
 if (mysqli_num_rows($qUser) > 0) {
     $user = mysqli_fetch_assoc($qUser);
-if (password_verify($password, $user['password'])) {
 
-    $_SESSION['status'] = 'login';
-    $_SESSION['role']   = 'pelanggan';
-    $_SESSION['id']     = $user['id_pelanggan'];
-    $_SESSION['nama']   = $user['nm_pelanggan'];
+    // ✅ password hash
+    if (password_verify($password, $user['password'])) {
 
-    // 🔹 LOGIN PELANGGAN → ke halaman beranda daftar obat
-    header("Location: ../customer/index.php"); 
-    exit();
-}
+        $_SESSION['status'] = 'login';
+        $_SESSION['role']   = 'pelanggan';
+        $_SESSION['id']     = $user['id_pelanggan'];
+        $_SESSION['nama']   = $user['nm_pelanggan'];
+
+      header("Location: /MEDIVERSE/index.php");exit();
+
+    }
 }
 
 
 // =======================
-// 3️⃣ GAGAL LOGIN
+// 3️⃣ LOGIN GAGAL
 // =======================
 header("Location: ../login.php?pesan=gagal");
 exit();

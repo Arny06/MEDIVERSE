@@ -49,43 +49,43 @@ if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
 
                 <li class="nav-item">
                     <a class="nav-link active" href="index.php">
-                        🏠 Beranda
+                         Beranda
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="customer/daftar_obat.php">💊 Daftar Obat</a>
+                    <a class="nav-link" href="customer/daftar_obat.php"> Daftar Obat</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="customer/informasi_obat.php">
-                        📋 Informasi Obat
+                         Informasi Obat
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="cara_pesan.php">
-                        📦 Cara Pemesanan
+                         Cara Pemesanan
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="lokasi.php">
-                        📍 Lokasi Apotek
+                         Lokasi Apotek
                     </a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="customer/profil.php">👤 Profil</a>
+                        <a class="nav-link" href="customer/profil.php"> Profil</a>
                     </li>
 
                 <?php if ($akses == 1) { ?>
                    <li class="nav-item">
                         <a class="nav-link text-danger" href="logout.php"
-                           onclick="return confirm('Apakah Anda yakin ingin logout?');">🚪 Logout</a>
+                           onclick="return confirm('Apakah Anda yakin ingin logout?');"> Logout</a>
                     </li>
                 <?php } else { ?>
                     <li class="nav-item">
-                        <a class="nav-link text-warning" href="login.php">🔑 Login</a>
+                        <a class="nav-link text-warning" href="login.php"> Login</a>
                     </li>
                 <?php } ?>
             </ul>
@@ -285,10 +285,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                © <span id="currentYear"></span> MEDIVERSE. Seluruh Hak Dilindungi Undang-Undang.
-               Dirancang dengan <i class="fas fa-heart text-danger"></i> by <a href="https://codewithfaraz.com/" target="_blank" rel="noopener noreferrer">codewithfaraz.com</a>.
-            </div>
+            
         </div>
     </footer>
 
