@@ -98,8 +98,6 @@ if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
             <div class="hero-content">
                 <h1>SELAMAT DATANG DI APOTEK MEDIVERSE.</h1>
                 <p>Mendukung Pelayanan Kesehatan yang Efisien dan Akurat,<br>Temukan era baru pelayanan farmasi dengan MEDIVERSE.</p>
-                <a href="#services" class="btn btn-primary btn-lg btn-hero">Jelajahi Layanan</a>
-                <a href="#latest-medicines" class="btn btn-outline-light btn-lg btn-hero">Obat Baru</a>
             </div>
         </div>
     </section>

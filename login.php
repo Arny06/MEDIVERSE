@@ -4,6 +4,7 @@ session_start();
 // 🔒 Cegah akses login jika sudah login
 if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
     if ($_SESSION['role'] == 'admin') {
+        $_SESSION['id_pelanggan'] = $data['id_pelanggan'];
         header("Location: admin/dashboard.php");
     } else {
         header("Location: customer/index.php");

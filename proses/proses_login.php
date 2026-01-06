@@ -31,6 +31,7 @@ if (mysqli_num_rows($qAdmin) > 0) {
         $_SESSION['role']   = 'admin';
         $_SESSION['id']     = $admin['id_admin'];
         $_SESSION['nama']   = $admin['username'];
+        $_SESSION['id_pelanggan'] = $data['id_pelanggan'];// Pastikan nama kolom 'id_pelanggan' sesuai database
 
         header("Location: ../admin/dashboard.php");
         exit();
@@ -57,6 +58,7 @@ if (mysqli_num_rows($qUser) > 0) {
         $_SESSION['role']   = 'pelanggan';
         $_SESSION['id']     = $user['id_pelanggan'];
         $_SESSION['nama']   = $user['nm_pelanggan'];
+        $_SESSION['id_pelanggan'] = $data['id_pelanggan'];
 
       header("Location: /MEDIVERSE/index.php");exit();
 

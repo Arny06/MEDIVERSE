@@ -2,58 +2,60 @@
 session_start();
 include "../koneksi.php";
 
-// CEGAH AKSES JIKA BELUM LOGIN
-if (!isset($_SESSION['status']) || $_SESSION['status'] != 'pesan') {
-    header("Location: ../customer/pesan.php");
+// 1. CEK LOGIN
+if (!isset($_SESSION['status'])) {
+    echo "<script>
+            alert('Silakan login terlebih dahulu!');
+            window.location='../login.php';
+          </script>";
     exit();
 }
 
-// Ambil data dari form
-$id_obat = $_POST['id_obat'] ?? '';
-$jumlah = $_POST['jumlah'] ?? 0;
+// 2. Ambil data dari form
+$id_obat_form = $_POST['id_obat'] ?? ''; // Gunakan nama unik
+$jumlah_beli  = $_POST['jumlah'] ?? 0;
 
-// Validasi input
-if (!$id_obat || $jumlah <= 0) {
-    echo "Data tidak valid.";
+// 3. Validasi input (Minimal beli 1)
+if (empty($id_obat_form) || $jumlah_beli < 1) {
+    echo "<script>
+            alert('Data tidak valid atau jumlah minimal adalah 1!');
+            window.location='informasi_obat.php';
+          </script>";
     exit();
 }
 
-// Ambil data obat dari database
-$query = mysqli_query($koneksi, "SELECT * FROM tb_obat WHERE id_obat='$id_obat'");
-$obat = mysqli_fetch_assoc($query);
+// 4. Ambil data pelanggan dari session
+$id_pelanggan_session = $_SESSION['id_pelanggan'] ?? null;
 
-if (!$obat) {
-    echo "Obat tidak ditemukan.";
-    exit();
+if (!$id_pelanggan_session) {
+    die("Error: ID Pelanggan tidak ditemukan dalam session. Silakan logout dan login kembali.");
 }
 
-// Hitung total harga
-$total_harga = $obat['harga'] * $jumlah;
+// 5. Cek data obat di database
+$query_obat = mysqli_query($koneksi, "SELECT * FROM tb_obat WHERE id_obat='$id_obat_form'");
+$data_obat  = mysqli_fetch_assoc($query_obat);
 
-// Ambil id_pelanggan dari session
-$id_pelanggan = $_SESSION['id_pelanggan'] ?? 0; // pastikan saat login sudah di-set
-
-if ($id_pelanggan == 0) {
-    echo "ID pelanggan tidak valid.";
-    exit();
+if (!$data_obat) {
+    die("Obat tidak ditemukan di database.");
 }
 
-// Waktu sekarang
-$tanggal = date('Y-m-d H:i:s');
+// 6. Hitung total
+$total_harga = $data_obat['harga'] * $jumlah_beli;
+$tanggal     = date('Y-m-d H:i:s');
 
-// Simpan pesanan ke tabel tb_pesanan
+// 7. Simpan pesanan
+// Masukkan variabel yang benar ke kolom yang benar
 $insert = mysqli_query($koneksi, "
     INSERT INTO tb_pesanan (id_pelanggan, id_obat, jumlah, total_harga, tanggal) 
-    VALUES ('$id_pelanggan', '$id_obat', '$jumlah', '$total_harga', '$tanggal')
+    VALUES ('$id_pelanggan_session', '$id_obat_form', '$jumlah_beli', '$total_harga', '$tanggal')
 ");
 
 if ($insert) {
-   
     echo "<script>
-            alert('Pesanan berhasil!');
+            alert('Pesanan berhasil disimpan!');
             window.location='../index.php';
           </script>";
 } else {
-    echo "Pesanan gagal: " . mysqli_error($koneksi);
+    echo "Gagal menyimpan pesanan: " . mysqli_error($koneksi);
 }
 ?>
